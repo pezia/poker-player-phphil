@@ -20,7 +20,7 @@ class Player {
         $communityChance = $this->getCommunityChance();
 
         if ($communityChance >= $chance) {
-            $chance = $chance * 0.7;
+            $chance = $chance * 0.8;
         }
 
         if ($chance > 0.89) {
