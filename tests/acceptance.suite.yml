@@ -8,7 +8,10 @@ class_name: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser
+        - REST
         - AcceptanceHelper
     config:
         PhpBrowser:
-            url: 'http://localhost/myapp/'
+            url: 'http://localhost:8000/'
+        REST:
+            url: 'http://localhost:8000/'
