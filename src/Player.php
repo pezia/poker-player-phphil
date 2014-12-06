@@ -17,19 +17,19 @@ class Player {
     public function betRequest($gameState) {
         $this->gameState = new GameState($gameState);
         $chance = $this->getChance();
-
+        
         if ($chance > 0.89) {
             return 4000;
         }
 
         $toCall = $this->gameState->currentBuyIn - $this->gameState->me->bet;
-
+        
         if ($chance > 0.59) {
             return $toCall + $this->gameState->minimumRaise * 4;
         }
         if ($chance > 0.39) {
             return $toCall + $this->gameState->minimumRaise;
-        }
+    }
         if ($chance > 0.19) {
             return $toCall;
         }
