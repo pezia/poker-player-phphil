@@ -9,6 +9,8 @@ class GameState {
     /** @var Card[] */
     public $communityCards;
     public $currentBuyIn;
+    /** @var Player */
+    private $me;
 
     public function __construct($gameState = array()) {
         if(is_array($gameState['players'])) {
@@ -20,6 +22,8 @@ class GameState {
         }
         
         $this->currentBuyIn = $gameState['current_buy_in'];
+
+        $this->me = $this->players[$gameState['in_action']];
     }
 
     private function initPlayers(array $players) {
