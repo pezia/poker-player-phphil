@@ -52,6 +52,8 @@ class Player {
 
         $chance = $ranking->getChance($remainingCardsCount);
         $communityChance = $communityRanking->getChance();
+        
+        error_log('Chance: ' . $chance . ' - Community chance: ' . $communityChance);
 
         if ($communityChance >= $chance) {
             return $chance * 0.8;
