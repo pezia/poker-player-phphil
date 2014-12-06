@@ -46,7 +46,7 @@ class Ranking {
                 $this->flush++;
             }
             if ($count === 4) {
-                $this->$almostFlush++;
+                $this->almostFlush++;
             }
         }
     }
