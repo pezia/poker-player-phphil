@@ -18,8 +18,8 @@ class Ranking {
     private $rankAvg;
 
 
-    public function __construct($cards) {
-        $this->rankAvg = $this->getRank($cards);
+    public function __construct($cards, $rankingCards = array()) {
+        $this->rankAvg = $this->getRank($rankingCards);
 
         $rankCounts = array();
         $suitCounts = array();
