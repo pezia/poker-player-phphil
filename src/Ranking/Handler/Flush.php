@@ -17,7 +17,7 @@ class Flush {
         }
 
         foreach ($suitCounts as $count) {
-            if ($count >= 4) {
+            if ($count >= 5) {
                 return true;
             }
         }
