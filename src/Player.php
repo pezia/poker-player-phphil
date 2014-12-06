@@ -11,7 +11,10 @@ class Player {
 
     public function betRequest($gameState) {
         $this->gameState = new GameState($gameState);
-        if ($this->gameState->getRank() > 8) {
+        $rank = $this->gameState->getRank();
+        error_log($rank);
+        error_log($this->gameState->currentBuyIn);
+        if ($rank > 8) {
             return $this->gameState->currentBuyIn;
         }
         return 0;
