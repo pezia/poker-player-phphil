@@ -45,4 +45,14 @@ class GameState {
             $communityCards
         );
     }
+
+    public function getActivePlayerCount() {
+        $count = 0;
+        foreach ($this->players as $p) {
+            if ($p->status === 'active') {
+                $count++;
+            }
+        }
+        return $count;
+    }
 } 

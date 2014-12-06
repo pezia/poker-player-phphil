@@ -47,4 +47,10 @@ class GameStateTest extends \Codeception\TestCase\Test
     public function testAllin() {
         $gameState = $this->getGameState('allin.json');
     }
+
+    public function testActivePlayerCount() {
+        $gameState = $this->getGameState('gamestate.json');
+        $this->assertEquals(2, $gameState->getActivePlayerCount());
+    }
+
 }
