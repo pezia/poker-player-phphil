@@ -1,15 +1,15 @@
 <?php
 
-class Player
-{
-    const VERSION = "Default PHP folding player";
+class Player {
 
-    public function betRequest($gameState)
-    {
+    const VERSION = "PHP Player 0.1";
+
+    public function betRequest($gameState) {
         return $gameState->current_buy_in + 50;
     }
 
-    public function showdown($game_state)
-    {
+    public function showdown($gameState) {
+        
     }
+
 }
