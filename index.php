@@ -1,6 +1,6 @@
 <?php
 
-require_once('player.php');
+require_once(__DIR__.'/vendor/autoload.php');
 
 $player = new Player();
 
