@@ -18,8 +18,8 @@ class Ranking {
     private $rankAvg;
 
 
-    public function __construct($cards, $rank) {
-        $this->rankAvg = $rank;
+    public function __construct($cards) {
+        $this->rankAvg = $this->getRank($cards);
 
         $rankCounts = array();
         $suitCounts = array();
@@ -86,5 +86,20 @@ class Ranking {
         return 0;
     }
 
+    /**
+     * @param Card[] $cards
+     * @return float|int
+     */
+    public function getRank($cards) {
+        $sum = 0;
+        $num =count($cards);
+        if ($num === 0) {
+            return 0;
+        }
+        foreach ($cards  as $card) {
+            $sum += $card->getRankScore();
+        }
+        return $sum/$num;
+    }
 
 } 

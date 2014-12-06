@@ -45,33 +45,4 @@ class GameState {
             $communityCards
         );
     }
-
-    public function getRank() {
-        $sum = 0;
-        $num =count($this->me->holeCards);
-        if ($num === 0) {
-            return 0;
-        }
-        foreach ($this->me->holeCards  as $card) {
-            $sum += $card->getRankScore();
-        }
-        return $sum/$num;
-    }
-
-    public function hasPair() {
-        $rankCounts = array();
-        $cards = array_merge($this->communityCards, $this->me->holeCards);
-        foreach ($cards as $card) {
-            $count = isset($rankCounts[$card->rank]) ? $rankCounts[$card->rank] : 0 ;
-            $rankCounts[$card->rank] = $count + 1;
-        }
-        $pairs = 0;
-        foreach ($rankCounts as $rank=>$count) {
-            if ($count === 2) {
-                $pairs++;
-            }
-        }
-        return $pairs > 0;
-    }
-
 } 

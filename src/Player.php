@@ -50,7 +50,7 @@ class Player {
     public function getChance() {
         $cards = array_merge($this->gameState->communityCards, $this->gameState->me->holeCards);
 
-        $ranking = new Ranking($cards, $this->gameState->getRank());
+        $ranking = new Ranking($cards);
         $chance = $ranking->getChance();
         return $chance;
     }
@@ -59,7 +59,7 @@ class Player {
      * @return float|int
      */
     public function getCommunityChance() {
-        $communityRanking = new Ranking($this->gameState->communityCards, $this->gameState->getRank());
+        $communityRanking = new Ranking($this->gameState->communityCards);
         $communityChance = $communityRanking->getChance();
         return $communityChance;
     }
