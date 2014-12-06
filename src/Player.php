@@ -19,7 +19,7 @@ class Player {
         $chance = $this->getChance();
         
         if ($chance > 0.89) {
-            return 4000;
+            return 23423;
         }
 
         $toCall = $this->gameState->currentBuyIn - $this->gameState->me->bet;
