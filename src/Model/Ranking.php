@@ -68,7 +68,6 @@ class Ranking {
         if ($handRank === Hand::FOUR_OF_A_KIND) {
             return 1;
         }
-        
         if ($handRank === Hand::FULL_HOUSE) {
             return 1;
         }
