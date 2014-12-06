@@ -44,9 +44,12 @@ class GameStateTest extends \Codeception\TestCase\Test
     public function testRanks() {
         $gameState = $this->getGameState('gamestate.json');
         $this->assertEquals(7.5, $gameState->getRank());
+        //$this->assertEquals(false, $gameState->hasPair());
+        //$this->assertEquals(false, $gameState->hasPair());
     }
     public function testAllin() {
         $gameState = $this->getGameState('allin.json');
         $this->assertEquals(12, $gameState->getRank());
+        //$this->assertEquals(true, $gameState->hasPair());
     }
 }

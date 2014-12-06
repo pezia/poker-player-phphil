@@ -4,7 +4,7 @@ use Model\GameState;
 
 class Player {
 
-    const VERSION = "PHP Player 0.1";
+    const VERSION = "PHP Player 0.2";
 
     /** @var GameState */
     private $gameState;

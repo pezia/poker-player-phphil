@@ -56,6 +56,8 @@ class GameState {
         return $sum/$num;
     }
 
+    public function hasPair() {
 
+    }
 
 } 
