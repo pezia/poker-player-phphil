@@ -30,10 +30,11 @@ class Player {
         if ($chance > 0.39) {
             return $toCall + $this->gameState->minimumRaise;
         }
-        if ($chance > 0.19) {
+        $smallBet = $toCall < $this->gameState->me->stack * 0.3;
+        if ($chance > 0.19 && $smallBet) {
             return $toCall;
         }
-        
+
         return 0;
     }
 
