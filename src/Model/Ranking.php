@@ -92,10 +92,10 @@ class Ranking {
         if ($this->pairs > 0) {
             return 0.3 * $rankMul;
         }
-        if ($this->rankAvg > 7) {
+        if ($this->rankAvg > 7.5) {
             return 0.25;
         }
-        if ($this->rankAvg > 6) {
+        if ($this->rankAvg > 6.5) {
             return 0.2;
         }
         return 0;
