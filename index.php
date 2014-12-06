@@ -7,7 +7,7 @@ ini_set('display_errors', $debug);
 
 set_error_handler(function($message, $code, $file, $line) {
     $e = new ErrorException($message, 0, $code, $file, $line);
-    error_log($e . '');
+    error_log('!!ERROR!!: ' . $e);
 });
 
 try {
@@ -39,7 +39,7 @@ try {
             break;
     }
 } catch (Exception $ex) {
-    error_log($ex->getMessage());
+    error_log('!!EXCEPTION!!: ' . $ex->getMessage());
     echo 0;
 }
 
