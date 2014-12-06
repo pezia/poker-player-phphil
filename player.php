@@ -4,9 +4,9 @@ class Player
 {
     const VERSION = "Default PHP folding player";
 
-    public function betRequest($game_state)
+    public function betRequest($gameState)
     {
-        return 0;
+        return $gameState->current_buy_in + 50;
     }
 
     public function showdown($game_state)
