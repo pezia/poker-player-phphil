@@ -5,7 +5,7 @@ use Model\Ranking;
 
 class Player {
 
-    const VERSION = "PHP Player 0.2";
+    const VERSION = "PHP Player 0.2"; // LEAN POKER IS GREAT
 
     /** @var GameState */
     private $gameState;
