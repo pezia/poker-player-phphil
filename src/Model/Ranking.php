@@ -15,19 +15,14 @@ class Ranking {
     public $poker = 0;
     public $flush = 0;
     public $almostFlush = 0;
-
-    /**
-     * @var GameState
-     */
-    private $gameState;
+    private $rankAvg;
 
 
-    public function __construct(GameState $gameState) {
-        $this->gameState = $gameState;
+    public function __construct($cards, $rank) {
+        $this->rankAvg = $rank;
 
         $rankCounts = array();
         $suitCounts = array();
-        $cards = array_merge($gameState->communityCards, $gameState->me->holeCards);
         foreach ($cards as $card) {
             $count = isset($rankCounts[$card->rank]) ? $rankCounts[$card->rank] : 0 ;
             $rankCounts[$card->rank] = $count + 1;
@@ -57,21 +52,24 @@ class Ranking {
     }
 
     public function getChance() {
-        $rank = $this->gameState->getRank();
-        error_log('rank: '.$rank);
+        error_log('rank: '.$this->rankAvg);
         error_log('pairs: '.$this->pairs);
         error_log('drill: '.$this->drill);
         error_log('poker: '.$this->poker);
-        error_log('currentBuyIn: '.$this->gameState->currentBuyIn);
         if ($this->poker > 0) {
             return 1;
         }
         if ($this->drill > 0 && $this->pairs > 0) {
             return 1;
         }
-
+        if ($this->flush > 0) {
+            return 0.7;
+        }
         if ($this->drill > 0) {
             return 0.6;
+        }
+        if ($this->flush > 0) {
+            return 0.7;
         }
         if ($this->pairs > 1) {
             return 0.4;
@@ -79,8 +77,11 @@ class Ranking {
         if ($this->pairs > 0) {
             return 0.3;
         }
-        if ($rank > 7 && $this->gameState->currentBuyIn < 200) {
-            return 0.3;
+        if ($this->rankAvg > 8) {
+            return 0.25;
+        }
+        if ($this->rankAvg > 7) {
+            return 0.2;
         }
         return 0;
     }

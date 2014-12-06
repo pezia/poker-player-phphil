@@ -16,8 +16,12 @@ class Player {
      */
     public function betRequest($gameState) {
         $this->gameState = new GameState($gameState);
-        $ranking = new Ranking($this->gameState);
-        $chance = $ranking->getChance();
+        $chance = $this->getChance();
+        $communityChance = $this->getCommunityChance();
+
+        if ($communityChance >= $chance) {
+            $chance = $chance * 0.7;
+        }
 
         if ($chance > 0.89) {
             return 4000;
@@ -38,6 +42,26 @@ class Player {
 
     public function showdown($gameState) {
         
+    }
+
+    /**
+     * @return float|int
+     */
+    public function getChance() {
+        $cards = array_merge($this->gameState->communityCards, $this->gameState->me->holeCards);
+
+        $ranking = new Ranking($cards, $this->gameState->getRank());
+        $chance = $ranking->getChance();
+        return $chance;
+    }
+
+    /**
+     * @return float|int
+     */
+    public function getCommunityChance() {
+        $communityRanking = new Ranking($this->gameState->communityCards, $this->gameState->getRank());
+        $communityChance = $communityRanking->getChance();
+        return $communityChance;
     }
 
 }
