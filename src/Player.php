@@ -1,6 +1,7 @@
 <?php
 
 use Model\GameState;
+use Model\Ranking;
 
 class Player {
 
@@ -9,33 +10,27 @@ class Player {
     /** @var GameState */
     private $gameState;
 
+    /**
+     * @param $gameState
+     * @return int
+     */
     public function betRequest($gameState) {
         $this->gameState = new GameState($gameState);
-        $ranking = new \Model\Ranking($this->gameState);
-        $rank = $this->gameState->getRank();
-        error_log('rank: '.$rank);
-        error_log('pairs: '.$ranking->pairs);
-        error_log('drill: '.$ranking->drill);
-        error_log('poker: '.$ranking->poker);
-        error_log('currentBuyIn: '.$this->gameState->currentBuyIn);
-        if ($ranking->poker > 0) {
-            return 4000;
-        }
-        if ($ranking->drill > 0 && $ranking->pairs > 0) {
+        $ranking = new Ranking($this->gameState);
+        $chance = $ranking->getChance();
+
+        if ($chance > 0.89) {
             return 4000;
         }
 
         $toCall = $this->gameState->currentBuyIn - $this->gameState->me->bet;
-        if ($ranking->drill > 0) {
+        if ($chance > 0.59) {
             return $toCall + $this->gameState->minimumRaise * 4;
         }
-        if ($ranking->pairs > 1) {
+        if ($chance > 0.39) {
             return $toCall + $this->gameState->minimumRaise;
         }
-        if ($ranking->pairs > 0) {
-            return $toCall;
-        }
-        if ($rank > 7 && $this->gameState->currentBuyIn < 200) {
+        if ($chance > 0.29) {
             return $toCall;
         }
         return 0;

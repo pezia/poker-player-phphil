@@ -56,5 +56,34 @@ class Ranking {
         }
     }
 
+    public function getChance() {
+        $rank = $this->gameState->getRank();
+        error_log('rank: '.$rank);
+        error_log('pairs: '.$this->pairs);
+        error_log('drill: '.$this->drill);
+        error_log('poker: '.$this->poker);
+        error_log('currentBuyIn: '.$this->gameState->currentBuyIn);
+        if ($this->poker > 0) {
+            return 1;
+        }
+        if ($this->drill > 0 && $this->pairs > 0) {
+            return 1;
+        }
+
+        if ($this->drill > 0) {
+            return 0.6;
+        }
+        if ($this->pairs > 1) {
+            return 0.4;
+        }
+        if ($this->pairs > 0) {
+            return 0.3;
+        }
+        if ($rank > 7 && $this->gameState->currentBuyIn < 200) {
+            return 0.3;
+        }
+        return 0;
+    }
+
 
 } 
