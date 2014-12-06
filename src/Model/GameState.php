@@ -6,10 +6,12 @@ class GameState {
 
     private $players;
     private $communityCards;
+    private $currentBuyIn;
 
     public function __construct($gameState = array()) {
         $this->initPlayers($gameState['players']);
         $this->initCards($gameState['community_cards']);
+        $this->currentBuyIn = $gameState['current_buy_in'];
     }
 
     private function initPlayers($players) {
