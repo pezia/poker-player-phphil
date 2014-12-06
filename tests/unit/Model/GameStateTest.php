@@ -9,9 +9,14 @@ class GameStateTest extends \Codeception\TestCase\Test
      * @var \UnitTester
      */
     protected $tester;
-
+    
+    private $gs;
+    
     protected function _before()
     {
+        $json = file_get_contents('tests/_data/gamestate.json');
+        $json = preg_replace('~//.*$~m', '', $json);
+        $this->gs = json_decode($json, true);
     }
 
     protected function _after()
@@ -19,12 +24,11 @@ class GameStateTest extends \Codeception\TestCase\Test
     }
 
     // tests
-    public function testMe()
+    public function testConstruct()
     {
-        $json = file_get_contents('tests/_data/gamestate.json');
-        $json = preg_replace('~//.*$~m', '', $json);
-        $gs = json_decode($json, true);
-        new GameState($gs);
+        $gameState = new GameState($this->gs);
+        
+        $this->assertCount(3, $gameState->players);
     }
-
+    
 }

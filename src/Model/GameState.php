@@ -29,7 +29,7 @@ class GameState {
     private function initPlayers(array $players) {
         $this->players = array_map(
             function($p) {
-                return new Player($p);
+                return Player::fromInputData($p);
             },
             $players
         );
