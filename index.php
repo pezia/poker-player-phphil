@@ -5,7 +5,7 @@ $start = microtime(true);
 $debug = file_exists(__DIR__ . '/debug');
 ini_set('display_errors', $debug);
 
-set_error_handler(function($message, $code, $file, $line) {
+set_error_handler(function($code,$message, $file, $line) {
     $e = new ErrorException($message, 0, $code, $file, $line);
     error_log('!!ERROR!!: ' . $e);
 });
