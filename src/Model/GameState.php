@@ -57,7 +57,19 @@ class GameState {
     }
 
     public function hasPair() {
-
+        $rankCounts = array();
+        $cards = array_merge($this->communityCards, $this->me->holeCards);
+        foreach ($cards as $card) {
+            $count = isset($rankCounts[$card->rank]) ? $rankCounts[$card->rank] : 0 ;
+            $rankCounts[$card->rank] = $count + 1;
+        }
+        $pairs = 0;
+        foreach ($rankCounts as $rank=>$count) {
+            if ($count === 2) {
+                $pairs++;
+            }
+        }
+        return $pairs > 0;
     }
 
 } 

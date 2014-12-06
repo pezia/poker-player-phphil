@@ -20,7 +20,7 @@ class BasicCest {
     public function betRequest(AcceptanceTester $I) {
         $I->sendPOST('/', array('action' => 'bet_request', 'game_state' => $this->getGameState('gamestate.json')));
         $I->seeResponseCodeIs(200);
-        $I->seeResponseEquals(0);
+        $I->seeResponseEquals(370);
     }
     public function betRequestAllIn(AcceptanceTester $I) {
         $I->sendPOST('/', array('action' => 'bet_request', 'game_state' => $this->getGameState('allin.json')));
