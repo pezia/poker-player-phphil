@@ -56,7 +56,7 @@ class Ranking {
         }
     }
 
-    public function getChance() {
+    public function getChance($remainingCardsCount = 0) {
         error_log('rank: '.$this->rankAvg);
         error_log('pairs: '.$this->pairs);
         error_log('drill: '.$this->drill);
@@ -80,11 +80,14 @@ class Ranking {
         if ($this->drill > 0) {
             return 0.6 * $rankMul;
         }
-        if ($this->flush > 0) {
-            return 0.7;
+        if ($this->almostFlush > 0 && $remainingCardsCount === 2) {
+            return 0.5;
         }
         if ($this->pairs > 1) {
             return 0.4 * $rankMul;
+        }
+        if ($this->almostFlush > 0 && $remainingCardsCount === 1) {
+            return 0.4;
         }
         if ($this->pairs > 0) {
             return 0.3 * $rankMul;

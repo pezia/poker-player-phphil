@@ -52,7 +52,8 @@ class Player {
         $cards = array_merge($this->gameState->communityCards, $this->gameState->me->holeCards);
 
         $ranking = new Ranking($cards, $this->gameState->me->holeCards);
-        $chance = $ranking->getChance();
+        $remainingCardsCount = 5 - count($this->gameState->communityCards);
+        $chance = $ranking->getChance($remainingCardsCount);
         return $chance;
     }
 
