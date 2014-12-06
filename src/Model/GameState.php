@@ -4,7 +4,9 @@ namespace Model;
 
 class GameState {
 
+    /** @var Player[] */
     public $players;
+    /** @var Card[] */
     public $communityCards;
     public $currentBuyIn;
 
