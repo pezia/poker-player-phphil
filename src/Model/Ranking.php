@@ -70,7 +70,6 @@ class Ranking {
         }
         
         if ($handRank === Hand::FULL_HOUSE) {
-            // full
             return 1;
         }
         if ($this->flush > 0) {
