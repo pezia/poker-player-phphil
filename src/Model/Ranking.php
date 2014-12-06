@@ -56,11 +56,6 @@ class Ranking {
     }
 
     public function getChance($remainingCardsCount = 0) {
-        error_log('rank: '.$this->rankAvg);
-        error_log('pairs: '.$this->pairs);
-        error_log('drill: '.$this->drill);
-        error_log('poker: '.$this->poker);
-
         $rankMul = $this->rankMul();
 
         $handRank = $this->hand->getRank();
