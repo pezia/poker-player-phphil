@@ -13,7 +13,6 @@ class Player {
         $this->gameState = new GameState($gameState);
         $ranking = new \Model\Ranking($this->gameState);
         $rank = $this->gameState->getRank();
-        $pair = $this->gameState->hasPair();
         error_log('rank: '.$rank);
         error_log('pairs: '.$ranking->pairs);
         error_log('drill: '.$ranking->drill);
@@ -25,17 +24,19 @@ class Player {
         if ($ranking->drill > 0 && $ranking->pairs > 0) {
             return 4000;
         }
+
+        $toCall = $this->gameState->currentBuyIn - $this->gameState->me->bet;
         if ($ranking->drill > 0) {
-            return $this->gameState->currentBuyIn + 1000;
+            return $toCall + $this->gameState->minimumRaise * 4;
         }
         if ($ranking->pairs > 1) {
-            return $this->gameState->currentBuyIn + 100;
+            return $toCall + $this->gameState->minimumRaise;
         }
         if ($ranking->pairs > 0) {
-            return $this->gameState->currentBuyIn;
+            return $toCall;
         }
         if ($rank > 7 && $this->gameState->currentBuyIn < 200) {
-            return $this->gameState->currentBuyIn;
+            return $toCall;
         }
         return 0;
     }
