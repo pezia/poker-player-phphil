@@ -11,7 +11,7 @@ class Player {
 
     public function betRequest($gameState) {
         $this->gameState = new GameState($gameState);
-        return $gameState->currentBuyIn + 50;
+        return $this->gameState->currentBuyIn + 50;
     }
 
     public function showdown($gameState) {

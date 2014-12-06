@@ -9,12 +9,18 @@ class GameState {
     public $currentBuyIn;
 
     public function __construct($gameState = array()) {
-        $this->initPlayers($gameState['players']);
-        $this->initCards($gameState['community_cards']);
+        if(is_array($gameState['players'])) {
+            $this->initPlayers($gameState['players']);
+        }
+        
+        if(is_array($gameState['community_cards'])) {
+            $this->initCards($gameState['community_cards']);
+        }
+        
         $this->currentBuyIn = $gameState['current_buy_in'];
     }
 
-    private function initPlayers($players) {
+    private function initPlayers(array $players) {
         $this->players = array_map(
             function($p) {
                 return new Player($p);
@@ -23,7 +29,7 @@ class GameState {
         );
     }
 
-    private function initCards($communityCards) {
+    private function initCards(array $communityCards) {
         $this->communityCards = array_map(
             function($c) {
                 return new Card($c['suit'],$c['rank']);
