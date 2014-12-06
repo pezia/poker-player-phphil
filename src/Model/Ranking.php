@@ -118,16 +118,16 @@ class Ranking {
     }
 
     private function rankMul() {
-        if ($this->rankAvg > 10) {
+        if ($this->rankAvg > 11) {
             return 2;
         }
-        if ($this->rankAvg > 9) {
+        if ($this->rankAvg > 10) {
             return 1.5;
         }
-        if ($this->rankAvg > 8) {
+        if ($this->rankAvg > 9) {
             return 1.3;
         }
-        if ($this->rankAvg > 7) {
+        if ($this->rankAvg > 8) {
             return 1.1;
         }
         return 1;
