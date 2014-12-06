@@ -25,7 +25,7 @@ class BasicCest {
     public function betRequestDrill(AcceptanceTester $I) {
         $I->sendPOST('/', array('action' => 'bet_request', 'game_state' => $this->getGameState('allin.json')));
         $I->seeResponseCodeIs(200);
-        $I->seeResponseEquals(1200);
+        $I->seeResponseEquals(4000);
     }
 
     /**
