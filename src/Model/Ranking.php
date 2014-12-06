@@ -76,6 +76,9 @@ class Ranking {
         if ($this->flush > 0) {
             return 0.7;
         }
+        if ($handRank === Hand::STRAIGHT) {
+            return 0.65 * $rankMul;
+        }
         if ($this->drill > 0) {
             return 0.6 * $rankMul;
         }
