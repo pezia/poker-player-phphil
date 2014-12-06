@@ -13,8 +13,9 @@ class Player {
         $this->gameState = new GameState($gameState);
         $rank = $this->gameState->getRank();
         $pair = $this->gameState->hasPair();
-        error_log($rank);
-        error_log($this->gameState->currentBuyIn);
+        error_log('rank: '.$rank);
+        error_log('pair: '.$pair);
+        error_log('currentBuyIn: '.$this->gameState->currentBuyIn);
         if ($pair) {
             return $this->gameState->currentBuyIn + 50;
         }
