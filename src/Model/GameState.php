@@ -4,9 +4,9 @@ namespace Model;
 
 class GameState {
 
-    private $players;
-    private $communityCards;
-    private $currentBuyIn;
+    public $players;
+    public $communityCards;
+    public $currentBuyIn;
 
     public function __construct($gameState = array()) {
         $this->initPlayers($gameState['players']);
