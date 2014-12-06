@@ -18,7 +18,7 @@ class Player {
         $this->gameState = new GameState($gameState);
         $chance = $this->getChance();
 
-        if ($chance > 0.89) {
+        if ($chance > 0.98) {
             return 23423;
         }
 
