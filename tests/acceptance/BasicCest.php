@@ -18,8 +18,22 @@ class BasicCest {
     }
 
     public function betRequest(AcceptanceTester $I) {
-        $I->sendPOST('/', array('action' => 'bet_request', 'game_state' => $this->gameState));
+        $I->sendPOST('/', array('action' => 'bet_request', 'game_state' => $this->getGameState('gamestate.json')));
         $I->seeResponseCodeIs(200);
         $I->seeResponseEquals(0);
+    }
+    public function betRequestAllIn(AcceptanceTester $I) {
+        $I->sendPOST('/', array('action' => 'bet_request', 'game_state' => $this->getGameState('allin.json')));
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseEquals(20000);
+    }
+
+    /**
+     * @return string
+     */
+    private function getGameState($file) {
+        $json = file_get_contents('tests/_data/'.$file);
+        $json = preg_replace('~//.*$~m', '', $json);
+        return $json;
     }
 }

@@ -11,12 +11,21 @@ class GameStateTest extends \Codeception\TestCase\Test
     protected $tester;
     
     private $gs;
-    
+
+    /**
+     * @return GameState
+     */
+    public function getGameState($file) {
+        $json = file_get_contents('tests/_data/'.$file);
+        $json = preg_replace('~//.*$~m', '', $json);
+        $gs = json_decode($json, true);
+        $gameState = new GameState($gs);
+        return $gameState;
+    }
+
     protected function _before()
     {
-        $json = file_get_contents('tests/_data/gamestate.json');
-        $json = preg_replace('~//.*$~m', '', $json);
-        $this->gs = json_decode($json, true);
+
     }
 
     protected function _after()
@@ -26,13 +35,16 @@ class GameStateTest extends \Codeception\TestCase\Test
     // tests
     public function testConstruct()
     {
-        $gameState = new GameState($this->gs);
-        
+        $gameState = $this->getGameState('gamestate.json');
         $this->assertCount(3, $gameState->players);
     }
 
     public function testRanks() {
-        $gameState = new GameState($this->gs);
-        $gameState->getRank();
+        $gameState = $this->getGameState('gamestate.json');
+        $this->assertEquals(7.5, $gameState->getRank());
+    }
+    public function testAllin() {
+        $gameState = $this->getGameState('allin.json');
+        $this->assertEquals(12, $gameState->getRank());
     }
 }
