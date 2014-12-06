@@ -20,12 +20,12 @@ class BasicCest {
     public function betRequest(AcceptanceTester $I) {
         $I->sendPOST('/', array('action' => 'bet_request', 'game_state' => $this->getGameState('gamestate.json')));
         $I->seeResponseCodeIs(200);
-        $I->seeResponseEquals(370);
+        $I->seeResponseEquals(320);
     }
-    public function betRequestAllIn(AcceptanceTester $I) {
+    public function betRequestDrill(AcceptanceTester $I) {
         $I->sendPOST('/', array('action' => 'bet_request', 'game_state' => $this->getGameState('allin.json')));
         $I->seeResponseCodeIs(200);
-        $I->seeResponseEquals(320);
+        $I->seeResponseEquals(1320);
     }
 
     /**
