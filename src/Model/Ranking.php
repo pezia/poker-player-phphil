@@ -68,9 +68,7 @@ class Ranking {
         if ($handRank === Hand::FOUR_OF_A_KIND) {
             return 1;
         }
-        
         if ($handRank === Hand::FULL_HOUSE) {
-            // full
             return 1;
         }
         if ($this->flush > 0) {
@@ -94,10 +92,10 @@ class Ranking {
         if ($this->pairs > 0) {
             return 0.3 * $rankMul;
         }
-        if ($this->rankAvg > 7) {
+        if ($this->rankAvg > 7.5) {
             return 0.25;
         }
-        if ($this->rankAvg > 6) {
+        if ($this->rankAvg > 6.5) {
             return 0.2;
         }
         return 0;
@@ -120,16 +118,16 @@ class Ranking {
     }
 
     private function rankMul() {
-        if ($this->rankAvg > 10) {
+        if ($this->rankAvg > 11) {
             return 2;
         }
-        if ($this->rankAvg > 9) {
+        if ($this->rankAvg > 10) {
             return 1.5;
         }
-        if ($this->rankAvg > 8) {
+        if ($this->rankAvg > 9) {
             return 1.3;
         }
-        if ($this->rankAvg > 7) {
+        if ($this->rankAvg > 8) {
             return 1.1;
         }
         return 1;
