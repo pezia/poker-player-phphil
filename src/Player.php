@@ -19,7 +19,7 @@ class Player {
         $chance = $this->getChance();
 
         if ($chance > 0.89) {
-            return 4000;
+            return 23423;
         }
 
         $toCall = $this->gameState->currentBuyIn - $this->gameState->me->bet;
@@ -37,7 +37,7 @@ class Player {
     }
 
     public function showdown($gameState) {
-        
+
     }
 
     /**
@@ -53,11 +53,18 @@ class Player {
 
         $chance = $ranking->getChance($remainingCardsCount);
         $communityChance = $communityRanking->getChance();
-        
-        error_log('Chance: ' . $chance . ' - Community chance: ' . $communityChance);
+
+        error_log('Chance: '.$chance.' - Community chance: '.$communityChance);
+
+        if ($activePlayerCount > 3) {
+            $chance = $chance * 0.95;
+        }
+        if ($activePlayerCount > 2) {
+            $chance = $chance * 0.95;
+        }
 
         if ($communityChance >= $chance) {
-            return $chance * 0.8;
+            return $chance * 0.7;
         }
 
         return $chance;
