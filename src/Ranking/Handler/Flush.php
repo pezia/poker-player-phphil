@@ -9,7 +9,7 @@ namespace Ranking\Handler;
  */
 class Flush {
 
-    public function doesMatch(array $cards) {
+    public function match(array $cards) {
         $suitCounts = array();
 
         foreach ($cards as $card) {

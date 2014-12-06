@@ -43,7 +43,7 @@ class Hand {
     public function getRank() {
         foreach (self::$rankHandlerClasses as $rank => $class) {
             $handler = new $class();
-            if($handler->doesMatch($this->cards)) {
+            if($handler->match($this->cards)) {
                 return $rank;
             }
         }

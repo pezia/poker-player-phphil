@@ -28,7 +28,7 @@ class FourOfAKindTest extends \Codeception\TestCase\Test {
             new Card(Hand::DIAMONDS, 2),
         );
 
-        $this->assertTrue($this->handler->doesMatch($cards));
+        $this->assertTrue($this->handler->match($cards));
     }
 
     public function testDoesNotMatch() {
@@ -40,7 +40,7 @@ class FourOfAKindTest extends \Codeception\TestCase\Test {
             new Card(Hand::DIAMONDS, 2),
         );
 
-        $this->assertFalse($this->handler->doesMatch($cards));
+        $this->assertFalse($this->handler->match($cards));
     }
 
 }

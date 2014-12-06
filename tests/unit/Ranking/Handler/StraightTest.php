@@ -28,7 +28,7 @@ class StraightTest extends \Codeception\TestCase\Test {
             new Card(Hand::DIAMONDS, 2),
         );
 
-        $this->assertTrue($this->handler->doesMatch($cards));
+        $this->assertTrue($this->handler->match($cards));
     }
 
     public function testDoesNotMatch() {
@@ -41,7 +41,7 @@ class StraightTest extends \Codeception\TestCase\Test {
             new Card(Hand::DIAMONDS, 7),
         );
 
-        $this->assertFalse($this->handler->doesMatch($cards));
+        $this->assertFalse($this->handler->match($cards));
     }
 
 }

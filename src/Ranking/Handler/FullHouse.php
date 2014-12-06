@@ -9,11 +9,11 @@ namespace Ranking\Handler;
  */
 class FullHouse {
 
-    public function doesMatch(array $cards) {
+    public function match(array $cards) {
         $pair = new Pair();
         $threeOfAKind = new ThreeOfAKind();
 
-        return $pair->doesMatch($cards) && $threeOfAKind->doesMatch($cards);
+        return $pair->match($cards) && $threeOfAKind->match($cards);
     }
 
 }

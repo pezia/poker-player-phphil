@@ -9,7 +9,7 @@ namespace Ranking\Handler;
  */
 class Straight {
 
-    public function doesMatch(array $cards) {
+    public function match(array $cards) {
         $rankCounts = array();
 
         foreach ($cards as $card) {
