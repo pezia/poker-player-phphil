@@ -13,6 +13,8 @@ class Ranking {
     public $pairs = 0;
     public $drill = 0;
     public $poker = 0;
+    public $flush = 0;
+    public $almostFlush = 0;
 
     /**
      * @var GameState
@@ -24,13 +26,17 @@ class Ranking {
         $this->gameState = $gameState;
 
         $rankCounts = array();
+        $suitCounts = array();
         $cards = array_merge($gameState->communityCards, $gameState->me->holeCards);
         foreach ($cards as $card) {
             $count = isset($rankCounts[$card->rank]) ? $rankCounts[$card->rank] : 0 ;
             $rankCounts[$card->rank] = $count + 1;
+
+            $count = isset($suitCounts[$card->suit]) ? $suitCounts[$card->suit] : 0 ;
+            $suitCounts[$card->suit] = $count + 1;
         }
-        foreach ($rankCounts as $rank=>$count) {
-            if ($count === 4) {
+        foreach ($rankCounts as $count) {
+            if ($count > 3) {
                 $this->poker++;
             }
             if ($count === 3) {
@@ -38,6 +44,14 @@ class Ranking {
             }
             if ($count === 2) {
                 $this->pairs++;
+            }
+        }
+        foreach ($suitCounts as $count) {
+            if ($count > 4) {
+                $this->flush++;
+            }
+            if ($count === 4) {
+                $this->$almostFlush++;
             }
         }
     }
