@@ -10,7 +10,7 @@ class GameState {
     public $communityCards;
     public $currentBuyIn;
     /** @var Player */
-    private $me;
+    public $me;
 
     public function __construct($gameState = array()) {
         if(is_array($gameState['players'])) {

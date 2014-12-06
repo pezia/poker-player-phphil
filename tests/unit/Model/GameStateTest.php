@@ -37,6 +37,8 @@ class GameStateTest extends \Codeception\TestCase\Test
     {
         $gameState = $this->getGameState('gamestate.json');
         $this->assertCount(3, $gameState->players);
+        $this->assertCount(2, $gameState->me->holeCards);
+        $this->assertCount(3, $gameState->communityCards);
     }
 
     public function testRanks() {
