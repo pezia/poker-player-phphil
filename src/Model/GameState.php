@@ -11,6 +11,7 @@ class GameState {
     public $currentBuyIn;
     /** @var Player */
     public $me;
+    public $minimumRaise;
 
     public function __construct($gameState = array()) {
         if(is_array($gameState['players'])) {
@@ -22,6 +23,7 @@ class GameState {
         }
         
         $this->currentBuyIn = $gameState['current_buy_in'];
+        $this->minimumRaise = $gameState['minimum_raise'];
 
         $this->me = $this->players[$gameState['in_action']];
     }

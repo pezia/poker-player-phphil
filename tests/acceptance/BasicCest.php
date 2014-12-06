@@ -17,15 +17,15 @@ class BasicCest {
         $I->seeResponseCodeIs(200);
     }
 
-    public function betRequest(AcceptanceTester $I) {
+    public function betRequestCall(AcceptanceTester $I) {
         $I->sendPOST('/', array('action' => 'bet_request', 'game_state' => $this->getGameState('gamestate.json')));
         $I->seeResponseCodeIs(200);
-        $I->seeResponseEquals(320);
+        $I->seeResponseEquals(240);
     }
     public function betRequestDrill(AcceptanceTester $I) {
         $I->sendPOST('/', array('action' => 'bet_request', 'game_state' => $this->getGameState('allin.json')));
         $I->seeResponseCodeIs(200);
-        $I->seeResponseEquals(1320);
+        $I->seeResponseEquals(1200);
     }
 
     /**
