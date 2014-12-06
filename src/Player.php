@@ -33,6 +33,7 @@ class Player {
         if ($chance > 0.19) {
             return $toCall;
         }
+        
         return 0;
     }
 
