@@ -44,5 +44,17 @@ class GameState {
         );
     }
 
+    public function getRank() {
+        $sum = 0;
+        $num =count($this->me->holeCards);
+        if ($num === 0) {
+            return 0;
+        }
+        foreach ($this->me->holeCards  as $card) {
+            $sum += $card->getRankScore();
+        }
+        return $sum/$num;
+    }
+
 
 } 

@@ -30,5 +30,9 @@ class GameStateTest extends \Codeception\TestCase\Test
         
         $this->assertCount(3, $gameState->players);
     }
-    
+
+    public function testRanks() {
+        $gameState = new GameState($this->gs);
+        $gameState->getRank();
+    }
 }

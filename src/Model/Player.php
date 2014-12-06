@@ -10,7 +10,8 @@ class Player {
     public $version;
     public $stack;
     public $bet;
-    public $holeCards;
+    /** @var  Card[] */
+    public $holeCards = array();
 
     public static function fromInputData($playerData) {
         $player = new Player();
@@ -22,9 +23,21 @@ class Player {
 
         $player->stack = $playerData['stack'];
         $player->bet = $playerData['bet'];
-        $player->holeCards = array(); //$playerData['hole_cards'];
+        if (isset($playerData['hole_cards'])) {
+
+            $player->initCards($playerData['hole_cards']);
+        }
 
         return $player;
+    }
+
+    public function initCards(array $communityCards) {
+        $this->holeCards = array_map(
+            function ($c) {
+                return new Card($c['suit'], $c['rank']);
+            },
+            $communityCards
+        );
     }
 
 }
