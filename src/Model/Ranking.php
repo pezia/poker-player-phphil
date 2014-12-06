@@ -8,6 +8,8 @@
 
 namespace Model;
 
+use \Ranking\Hand;
+
 class Ranking {
 
     public $pairs = 0;
@@ -16,10 +18,12 @@ class Ranking {
     public $flush = 0;
     public $almostFlush = 0;
     private $rankAvg;
+    
+    private $hand;
 
-
-    public function __construct($cards, $rankingCards = array()) {
-        $this->rankAvg = $this->getRank($rankingCards);
+    public function __construct($cards, $holeCards = array()) {
+        $this->hand = new Hand($cards);
+        $this->rankAvg = $this->getRank($holeCards);
 
         $rankCounts = array();
         $suitCounts = array();
@@ -59,10 +63,13 @@ class Ranking {
 
         $rankMul = $this->rankMul();
 
-        if ($this->poker > 0) {
+        $handRank = $this->hand->getRank();
+        
+        if ($handRank === Hand::FOUR_OF_A_KIND) {
             return 1;
         }
-        if ($this->drill > 0 && $this->pairs > 0) {
+        
+        if ($handRank === Hand::FULL_HOUSE) {
             // full
             return 1;
         }
