@@ -67,6 +67,12 @@ class Player {
             return $chance * 0.7;
         }
 
+        if ($ranking->almostFlush) {
+            if ($remainingCardsCount > 1) {
+                $chance = $chance + 0.15;
+            }
+        }
+
         return $chance;
     }
 }
