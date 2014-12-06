@@ -50,7 +50,7 @@ class Player {
 
         $ranking = new Ranking($cards, $this->gameState->me->holeCards);
         $communityRanking = new Ranking($this->gameState->communityCards);
-        $this->a;
+
         $chance = $ranking->getChance($remainingCardsCount);
         $communityChance = $communityRanking->getChance();
 
