@@ -1,0 +1,10 @@
+{
+    "name": "phphil/poker-player-php",
+    "authors": [
+        {
+            "name": "Balázs Sándor",
+            "email": "sandorbalazszsolt@gmail.com"
+        }
+    ],
+    "require": {}
+}
