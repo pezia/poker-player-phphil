@@ -17,11 +17,6 @@ class Player {
     public function betRequest($gameState) {
         $this->gameState = new GameState($gameState);
         $chance = $this->getChance();
-        $communityChance = $this->getCommunityChance();
-
-        if ($communityChance >= $chance) {
-            $chance = $chance * 0.8;
-        }
 
         if ($chance > 0.89) {
             return 4000;
@@ -50,20 +45,18 @@ class Player {
      */
     public function getChance() {
         $cards = array_merge($this->gameState->communityCards, $this->gameState->me->holeCards);
+        $remainingCardsCount = 5 - count($this->gameState->communityCards);
 
         $ranking = new Ranking($cards, $this->gameState->me->holeCards);
-        $remainingCardsCount = 5 - count($this->gameState->communityCards);
+        $communityRanking = new Ranking($this->gameState->communityCards);
+
         $chance = $ranking->getChance($remainingCardsCount);
+        $communityChance = $communityRanking->getChance();
+
+        if ($communityChance >= $chance) {
+            return $chance * 0.8;
+        }
+
         return $chance;
     }
-
-    /**
-     * @return float|int
-     */
-    public function getCommunityChance() {
-        $communityRanking = new Ranking($this->gameState->communityCards);
-        $communityChance = $communityRanking->getChance();
-        return $communityChance;
-    }
-
 }
